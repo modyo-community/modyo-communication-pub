@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import { Observable } from 'windowed-observable';
 
 export default {
   name: 'App',
@@ -28,9 +27,6 @@ export default {
       observable: null,
       channel: 'cardIndex',
     };
-  },
-  mounted() {
-    this.observable = new Observable(this.channel);
   },
   methods: {
     send(item) {
@@ -41,7 +37,7 @@ export default {
         },
         prop: 'prop A',
       };
-      this.observable.publish(newData);
+      window.mitt.emit(this.channel, newData);
     },
   },
 };
